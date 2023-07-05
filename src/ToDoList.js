@@ -3,7 +3,7 @@ import ToDo from "./ToDo";
 
 export default function ToDoList({ todos }) {
   return (
-    <ul>
+    <ul className="list-group">
       {todos.map((todo) => {
         return <ToDo key={todo.id} todo={todo} />;
       })}

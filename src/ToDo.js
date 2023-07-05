@@ -3,8 +3,7 @@ import React from "react";
 export default function ToDo({ todo }) {
   return (
     <>
-      <li>
-        <input type="checkbox" checked={todo.completed} />
+      <li className="list-group-item">
         {todo.name}
       </li>
     </>
