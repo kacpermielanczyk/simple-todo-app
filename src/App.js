@@ -1,9 +1,7 @@
-import React from "react";
+import { React } from "react";
+import ToDoApp from "./ToDoApp";
 
 function App() {
-  return (
-    <h1>hello world</h1>
-  );
+  return <ToDoApp />;
 }
-
 export default App;
