@@ -5,7 +5,7 @@ export default function ToDo({ todo }) {
     <>
       <li className="list-group-item d-flex justify-content-between align-items-center">
         <div className="ms-2 me-auto d-flex align-items-center">
-          <div className="lead">{todo.name}</div>
+          <div className="lead d-inline-block text-break">{todo.name}</div>
         </div>
         <button className="btn btn-primary">
           <svg
