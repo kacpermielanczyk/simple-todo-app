@@ -1,20 +1,21 @@
 import React from "react";
 
 export default function ToDo({ todo, deleteToDo, changeStyle }) {
-  const textTodoStyle = 'lead d-inline-block text-break';
-  
-    function handlerDeleteClick() {
+  const textTodoStyle = "lead d-inline-block text-break";
+  const listStyle =
+    "list-group-item d-flex justify-content-between align-items-center";
+
+  function handlerDeleteClick() {
     deleteToDo(todo.id);
   }
 
   function handlerChangeStyle() {
     changeStyle(todo.id);
-    if(todo.complete === true) {console.log("coś ustawiono", todo.name)}
   }
 
   return (
     <>
-      <li className="list-group-item d-flex justify-content-between align-items-center">
+      <li className={todo.complete === true ? `${listStyle} bg-light todo` : `${listStyle} todo`}>
         <input
           type="checkbox"
           checked={todo.complete}
@@ -22,7 +23,15 @@ export default function ToDo({ todo, deleteToDo, changeStyle }) {
           className="form-check-input"
         />
         <div className="ms-2 me-auto d-flex align-items-center">
-          <div className={todo.complete === true ? `text-decoration-line-through ${textTodoStyle}` : `text-decoration-none ${textTodoStyle}`}>{todo.name}</div>
+          <div
+            className={
+              todo.complete === true
+                ? `text-muted text-decoration-line-through ${textTodoStyle}`
+                : `text-decoration-none ${textTodoStyle}`
+            }
+          >
+            {todo.name}
+          </div>
         </div>
         <button onClick={handlerDeleteClick} className="btn btn-primary">
           <svg

@@ -31,6 +31,13 @@ export default function ToDoApp() {
     todoName.current.value = null;
   }
 
+  // save in key down
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        AddToDo();
+    }
+  }
+
   // delete todo
   function deleteToDo(id) {
     let newTodoList = todos.filter(todo => {
@@ -57,7 +64,7 @@ export default function ToDoApp() {
     <div className="container word-wrap text-wrap">
       <HeaderToDoApp />
       <div className="input-group mb-3">
-        <button className="input-group-text" onClick={AddToDo}>
+        <button className="btn btn-primary input-group-text" onClick={AddToDo}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -75,6 +82,7 @@ export default function ToDoApp() {
           className="form-control form-control-lg"
           placeholder="Add yours task"
           aria-describedby="basic-addon1"
+          onKeyDown={handleKeyDown}
         />
       </div>
 
