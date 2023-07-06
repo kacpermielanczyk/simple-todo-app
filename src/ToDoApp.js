@@ -15,7 +15,7 @@ export default function ToDoApp() {
     if (storedToDos) setToDos(storedToDos);
   }, []);
 
-  // save todo array
+  // save todo
   function AddToDo() {
     const name = todoName.current.value;
     if (name === "") return null;
@@ -31,10 +31,25 @@ export default function ToDoApp() {
     todoName.current.value = null;
   }
 
+  // delete todo
   function deleteToDo(id) {
     let newTodoList = todos.filter(todo => {
-        return todo.id != id
+        return todo.id !== id
     });
+    setToDos(newTodoList);
+    localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify(newTodoList));
+  }
+
+  // change style and statement todo
+  function changeStyle(id) {
+    let newTodoList = [...todos];
+    for(let i = 0; i < todos.length; i++) {
+        if(newTodoList[i].id === id) {
+            newTodoList[i].complete = !newTodoList[i].complete;
+            break;
+        }
+    }
+    localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify(newTodoList));
     setToDos(newTodoList);
   }
 
@@ -64,7 +79,7 @@ export default function ToDoApp() {
       </div>
 
       {todos.length === 0 && <p className="h5 text-center">No quests yet</p>}
-      <ToDoList todos={todos} deleteToDo={deleteToDo} />
+      <ToDoList todos={todos} deleteToDo={deleteToDo} changeStyle={changeStyle} />
     </div>
   );
 }
