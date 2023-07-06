@@ -11,27 +11,31 @@ export default function ToDoApp() {
 
   // load from localstorage
   useEffect(() => {
-    console.log("useEffect1");
     const storedToDos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS));
     if (storedToDos) setToDos(storedToDos);
-    console.log(storedToDos);
   }, []);
-
-  // save to localstorage
-  useEffect(() => {
-    console.log("useEffect2");
-    localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify(todos));
-  }, [todos]);
 
   // save todo array
   function AddToDo() {
-    let name = todoName.current.value;
+    const name = todoName.current.value;
     if (name === "") return null;
 
+    const todo = {
+        id: uuidv4(), name: name, complete: false
+    };
     setToDos((prevToDos) => {
-      return [...prevToDos, { id: uuidv4(), name: name, complete: false }];
+      return [...prevToDos, todo];
     });
+
+    localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify([...todos, todo]));
     todoName.current.value = null;
+  }
+
+  function deleteToDo(id) {
+    let newTodoList = todos.filter(todo => {
+        return todo.id != id
+    });
+    setToDos(newTodoList);
   }
 
   return (
@@ -60,7 +64,7 @@ export default function ToDoApp() {
       </div>
 
       {todos.length === 0 && <p className="h5 text-center">No quests yet</p>}
-      <ToDoList todos={todos} />
+      <ToDoList todos={todos} deleteToDo={deleteToDo} />
     </div>
   );
 }

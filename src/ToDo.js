@@ -1,13 +1,18 @@
 import React from "react";
 
-export default function ToDo({ todo }) {
-  return (
+export default function ToDo({ todo, deleteToDo }) {
+    
+    function handlerDeleteClick() {
+        deleteToDo(todo.id);
+    }
+
+    return (
     <>
       <li className="list-group-item d-flex justify-content-between align-items-center">
         <div className="ms-2 me-auto d-flex align-items-center">
           <div className="lead d-inline-block text-break">{todo.name}</div>
         </div>
-        <button className="btn btn-primary">
+        <button onClick={handlerDeleteClick} className="btn btn-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
