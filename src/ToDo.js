@@ -21,6 +21,7 @@ export default function ToDo({ todo, deleteToDo, changeStyle }) {
           checked={todo.complete}
           onChange={handlerChangeStyle}
           className="form-check-input"
+          
         />
         <div className="ms-2 me-auto d-flex align-items-center">
           <div

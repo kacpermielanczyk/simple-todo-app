@@ -64,7 +64,7 @@ export default function ToDoApp() {
     <div className="container word-wrap text-wrap">
       <HeaderToDoApp />
       <div className="input-group mb-3">
-        <button className="btn btn-primary input-group-text" onClick={AddToDo}>
+        <button className="btn btn-primary input-group-text test-button" onClick={AddToDo}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
