@@ -87,7 +87,8 @@ export default function ToDoApp() {
         />
       </div>
 
-      {todos.length === 0 && <p className="h5 text-center">No tasks yet</p>}
+      {/* {todos.length === 0 && <p className="h5 text-center">No tasks yet</p>} */}
+      {todos.every((todo) => todo.complete !== false) && <p className="h5 text-center">No tasks yet</p>}
       <ToDoList todos={todos.filter(todo => {return todo.complete === false})} deleteToDo={deleteToDo} changeStyle={changeStyle} />
       <DoneToDoList todos={todos.filter(todo => {return todo.complete === true})} deleteToDo={deleteToDo} changeStyle={changeStyle}/>
     </div>
