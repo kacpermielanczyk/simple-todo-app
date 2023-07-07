@@ -6,6 +6,18 @@
     background-color: rgb(218, 238, 255);
 }
 
-/* .test-button {
-    background-color: brown !important;
-} */
+.doneTodo {
+    background-color: #c7edff57 !important;
+    border-color: #c7edff8f !important;
+}
+
+.doneTodo:hover {
+    background-color: #c7edff8f !important;
+}
+
+.form-check-input {
+    width: auto; 
+    margin: 0; 
+    padding: 0; 
+    transform: scale(1);
+  }

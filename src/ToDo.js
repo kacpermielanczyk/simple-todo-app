@@ -15,13 +15,12 @@ export default function ToDo({ todo, deleteToDo, changeStyle }) {
 
   return (
     <>
-      <li className={todo.complete === true ? `${listStyle} bg-light todo` : `${listStyle} todo`}>
+      <li className={todo.complete === true ? `${listStyle} doneTodo todo` : `${listStyle} todo`}>
         <input
           type="checkbox"
           checked={todo.complete}
           onChange={handlerChangeStyle}
-          className="form-check-input"
-          
+          className="form-check-input form-check-input-fix"
         />
         <div className="ms-2 me-auto d-flex align-items-center">
           <div
