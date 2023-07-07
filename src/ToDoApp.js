@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ToDoList from "./ToDoList";
 import HeaderToDoApp from "./headerToDoApp";
+import DoneToDoList from "./DoneToDoList";
 
 const LOCAL_STORAGE_TODOS = "todos";
 
@@ -86,8 +87,9 @@ export default function ToDoApp() {
         />
       </div>
 
-      {todos.length === 0 && <p className="h5 text-center">No quests yet</p>}
-      <ToDoList todos={todos} deleteToDo={deleteToDo} changeStyle={changeStyle} />
+      {todos.length === 0 && <p className="h5 text-center">No tasks yet</p>}
+      <ToDoList todos={todos.filter(todo => {return todo.complete === false})} deleteToDo={deleteToDo} changeStyle={changeStyle} />
+      <DoneToDoList todos={todos.filter(todo => {return todo.complete === true})} deleteToDo={deleteToDo} changeStyle={changeStyle}/>
     </div>
   );
 }
