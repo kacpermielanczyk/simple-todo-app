@@ -28,7 +28,7 @@ export default function ToDoApp() {
   function AddToDo() {
     const name = todoName.current.value;
     const dateFormat = new Date();
-    const dataCreateTodo = format(dateFormat, "yyyy-MM-dd");
+    const dataCreateTodo = format(dateFormat, "yyyy-MM-dd HH:mm");
 
     if (name === "") return null;
 
@@ -70,7 +70,7 @@ export default function ToDoApp() {
         newTodoList[i].complete = !newTodoList[i].complete;
         if(newTodoList[i].dataDone === null) {
           const dateFormat = new Date();
-          const dataDoneTodo = format(dateFormat, "dd-MM-yyyy");
+          const dataDoneTodo = format(dateFormat, "yyyy-MM-dd HH:mm");
           newTodoList[i].dataDone = dataDoneTodo;
         }
         else {
@@ -88,9 +88,9 @@ export default function ToDoApp() {
       <HeaderToDoApp />
 
       <ul className="nav nav-pills mb-5 justify-content-center">
-        <li className="nav-item"><button onClick={() => updateToggle(1)} className={toggle === 1 ? "nav-link btn active" : "nav-link btn"}>Todo</button></li>
-        <li className="nav-item"><button onClick={() => updateToggle(2)} className={toggle === 2 ? "nav-link btn active" : "nav-link btn"}>Finished todo</button></li>
-        <li className="nav-item"><button onClick={() => updateToggle(3)} className={toggle === 3 ? "nav-link btn active" : "nav-link btn"}>All delete todo</button></li>
+        <li className="nav-item"><button type="button" onClick={() => updateToggle(1)} className={toggle === 1 ? "nav-link btn active m-1" : "btn btn-outline-primary m-1"}>Todo</button></li>
+        <li className="nav-item"><button type="button" onClick={() => updateToggle(2)} className={toggle === 2 ? "nav-link btn active m-1" : "btn btn-outline-primary m-1"}>Finished todo</button></li>
+        <li className="nav-item"><button type="button" onClick={() => updateToggle(3)} className={toggle === 3 ? "nav-link btn active m-1" : "btn btn-outline-primary m-1"}>All delete todo</button></li>
       </ul>
 
       <div className={toggle === 1 ? 'show-content' : 'content'}>

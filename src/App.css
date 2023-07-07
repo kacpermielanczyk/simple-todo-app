@@ -6,10 +6,17 @@
     background-color: #f4f4f4 !important;
 }
 
+.nav-hover:hover {
+    background-color: #0d6dfd6c !important;
+}
+
 .content {
     display: none;
+    opacity: 0;
+    transition: all 0.5s;
 }
 
 .show-content {
     display: block;
+    transition: all 0.5s;
 }
