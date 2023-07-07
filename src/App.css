@@ -2,13 +2,14 @@
     background-color: #f9f9f9;
 }
 
-.checkbox-custom:hover {
-    background-color: rgb(218, 238, 255);
+.done-todo:hover {
+    background-color: #f4f4f4 !important;
 }
 
-.form-check-input {
-    width: auto; 
-    margin: 0; 
-    padding: 0; 
-    transform: scale(1);
-  }
+.content {
+    display: none;
+}
+
+.show-content {
+    display: block;
+}

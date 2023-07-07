@@ -15,7 +15,7 @@ export default function ToDo({ todo, deleteToDo, changeStyle }) {
 
   return (
     <>
-      <li className={todo.complete === true ? `${listStyle} bg-light todo` : `${listStyle} todo`}>
+      <li className={todo.complete === true ? `${listStyle} bg-light done-todo` : `${listStyle} todo`}>
         <div className="d-flex justify-content-center align-items-center">
           <input
             className="form-check-input"
@@ -24,14 +24,14 @@ export default function ToDo({ todo, deleteToDo, changeStyle }) {
             onChange={handlerChangeStyle}
           />
         </div>
-        <div class="ms-2 me-auto">
+        <div className="ms-2 me-auto">
           <div className={
               todo.complete === true
                 ? `text-muted text-decoration-line-through ${textTodoStyle}`
                 : `text-decoration-none ${textTodoStyle}`
             }>{todo.name}</div>
           <br />
-          <span className="small">Create: {todo.dataCreate}</span>
+          <span className="small">{todo.dataDone !== null ? `Finished: ${todo.dataDone}` : `Create: ${todo.dataCreate}`}</span>
         </div>
         <button onClick={handlerDeleteClick} className="btn btn-primary">
           <svg
