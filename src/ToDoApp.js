@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
-
+import { motion } from "framer-motion";
 
 import ToDoList from "./ToDoList";
 import HeaderToDoApp from "./headerToDoApp";
@@ -84,7 +84,7 @@ export default function ToDoApp() {
   }
 
   return (
-    <div className="container word-wrap text-wrap">
+    <motion.div animate={{opacity: 1}} initial={{opacity: 0}} transition={{ duration: 0.5, delay: 0.2 }} className="container word-wrap text-wrap" >
       <HeaderToDoApp />
 
       <ul className="nav nav-pills mb-5 justify-content-center">
@@ -147,7 +147,7 @@ export default function ToDoApp() {
 
       </div>
 
-    </div>
+    </motion.div>
 
   );
 }
