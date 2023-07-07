@@ -15,23 +15,23 @@ export default function ToDo({ todo, deleteToDo, changeStyle }) {
 
   return (
     <>
-      <li className={todo.complete === true ? `${listStyle} doneTodo todo` : `${listStyle} todo`}>
-        <input
-          type="checkbox"
-          checked={todo.complete}
-          onChange={handlerChangeStyle}
-          className="form-check-input form-check-input-fix"
-        />
-        <div className="ms-2 me-auto d-flex align-items-center">
-          <div
-            className={
+      <li className={todo.complete === true ? `${listStyle} bg-light todo` : `${listStyle} todo`}>
+        <div className="d-flex justify-content-center align-items-center">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            checked={todo.complete}
+            onChange={handlerChangeStyle}
+          />
+        </div>
+        <div class="ms-2 me-auto">
+          <div className={
               todo.complete === true
                 ? `text-muted text-decoration-line-through ${textTodoStyle}`
                 : `text-decoration-none ${textTodoStyle}`
-            }
-          >
-            {todo.name}
-          </div>
+            }>{todo.name}</div>
+          <br />
+          <span className="small">Create: {todo.dataCreate}</span>
         </div>
         <button onClick={handlerDeleteClick} className="btn btn-primary">
           <svg

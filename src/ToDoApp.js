@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { format } from 'date-fns';
 import ToDoList from "./ToDoList";
+
 import HeaderToDoApp from "./headerToDoApp";
 import DoneToDoList from "./DoneToDoList";
 
@@ -19,15 +21,17 @@ export default function ToDoApp() {
   // save todo
   function AddToDo() {
     const name = todoName.current.value;
+    const dateFormat = new Date();
+    const dataCreateTodo = format(dateFormat, 'dd-MM-yyyy');
+
     if (name === "") return null;
 
     const todo = {
-        id: uuidv4(), name: name, complete: false
+        id: uuidv4(), name: name, complete: false, dataCreate: dataCreateTodo, dataDone: null
     };
     setToDos((prevToDos) => {
       return [...prevToDos, todo];
     });
-
     localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify([...todos, todo]));
     todoName.current.value = null;
   }
@@ -87,7 +91,6 @@ export default function ToDoApp() {
         />
       </div>
 
-      {/* {todos.length === 0 && <p className="h5 text-center">No tasks yet</p>} */}
       {todos.every((todo) => todo.complete !== false) && <p className="h5 text-center">No tasks yet</p>}
       <ToDoList todos={todos.filter(todo => {return todo.complete === false})} deleteToDo={deleteToDo} changeStyle={changeStyle} />
       <DoneToDoList todos={todos.filter(todo => {return todo.complete === true})} deleteToDo={deleteToDo} changeStyle={changeStyle}/>
