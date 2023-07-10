@@ -1,17 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function ToDo({ todo, deleteToDo, changeStyle }) {
+export default function ToDo({ todo, deleteToDo, changeStyle, moveToTrash }) {
   const textTodoStyle = "lead d-inline-block text-break";
   const listStyle =
     "list-group-item d-flex justify-content-between align-items-center";
 
-  function handlerDeleteClick() {
-    deleteToDo(todo.id);
-  }
+  // function handlerDeleteClick() {
+  //   deleteToDo(todo.id);
+  // }
 
   function handlerChangeStyle() {
     changeStyle(todo.id);
+  }
+
+  function handlerToTrash() {
+    moveToTrash(todo.id);
   }
 
   return (
@@ -51,7 +55,7 @@ export default function ToDo({ todo, deleteToDo, changeStyle }) {
               : `Create: ${todo.dataCreate}`}
           </span>
         </div>
-        <button onClick={handlerDeleteClick} className="btn btn-primary">
+        <button onClick={handlerToTrash} className="btn btn-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

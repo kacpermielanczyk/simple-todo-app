@@ -15,7 +15,7 @@ export default function ToDoApp() {
   const [toggle, setToggle] = useState(1);
   const todoName = useRef();
 
-  // cahnge tab
+  // change tab
   function updateToggle(id) {
     setToggle(id);
   }
@@ -38,6 +38,7 @@ export default function ToDoApp() {
       id: uuidv4(),
       name: name,
       complete: false,
+      isTrash: false,
       dataCreate: dataCreateTodo,
       dataDone: null,
     };
@@ -53,6 +54,19 @@ export default function ToDoApp() {
     if (event.key === "Enter") {
       AddToDo();
     }
+  }
+
+  // move to trash
+  function moveToTrash(id) {
+    let newTodoList = [...todos];
+    for(let i = 0; i < newTodoList.length; i++) {
+      if(newTodoList[i].id === id) {
+        newTodoList[i].isTrash = !newTodoList[i].isTrash;
+        break;
+      }
+    }
+    setToDos(newTodoList);
+    localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify(newTodoList));
   }
 
   // delete todo
@@ -96,9 +110,9 @@ export default function ToDoApp() {
       <Menu toggle={toggle} updateToggle={updateToggle} />
 
       <motion.div
-        animate={toggle === 1 ? { opacity: 1 } : { opacity: 0 }}
-        initial={toggle === 1 ? { opacity: 0 } : { opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
+        animate={toggle === 1 ? { opacity: 1, y:0 } : { opacity: 0, y:5 }}
+        initial={toggle === 1 ? { opacity: 0, y: 5 } : { opacity: 1, y:0 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
         className={toggle === 1 ? "show-content" : "content"}
       >
         <div className="input-group mb-3">
@@ -132,35 +146,46 @@ export default function ToDoApp() {
         )}
         <ToDoList
           todos={todos.filter((todo) => {
-            return todo.complete === false;
+            return (todo.complete === false) && (todo.isTrash === false);
           })}
           deleteToDo={deleteToDo}
           changeStyle={changeStyle}
+          moveToTrash={moveToTrash}
         />
       </motion.div>
 
       <motion.div
-        animate={toggle === 2 ? { opacity: 1 } : { opacity: 0 }}
-        initial={toggle === 2 ? { opacity: 0 } : { opacity: 1 }}
+        animate={toggle === 2 ? { opacity: 1, y:0 } : { opacity: 0, y:5 }}
+        initial={toggle === 2 ? { opacity: 0, y: 5 } : { opacity: 1, y:0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
         className={toggle === 2 ? "show-content" : "content"}
       >
         <FinishedTodoHeader todos={todos} />
         <ToDoList
           todos={todos.filter((todo) => {
-            return todo.complete === true;
+            return (todo.complete === true) && (todo.isTrash === false);
           })}
           deleteToDo={deleteToDo}
           changeStyle={changeStyle}
+          moveToTrash={moveToTrash}
         />
       </motion.div>
 
       <motion.div
-        animate={toggle === 3 ? { opacity: 1 } : { opacity: 0 }}
-        initial={toggle === 3 ? { opacity: 0 } : { opacity: 1 }}
+        animate={toggle === 3 ? { opacity: 1, y:0 } : { opacity: 0, y:5 }}
+        initial={toggle === 3 ? { opacity: 0, y: 5 } : { opacity: 1, y:0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
         className={toggle === 3 ? "show-content" : "content"}
-      ></motion.div>
+      >
+        <ToDoList
+          todos={todos.filter((todo) => {
+            return todo.isTrash === true;
+          })}
+          deleteToDo={deleteToDo}
+          changeStyle={changeStyle}
+          moveToTrash={moveToTrash}
+        />
+      </motion.div>
     </motion.div>
   );
 }
