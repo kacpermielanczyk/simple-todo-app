@@ -7,6 +7,7 @@ import ToDoList from "./ToDoList";
 import HeaderToDoApp from "./headerToDoApp";
 import FinishedTodoHeader from "./FinishedTodoHeader";
 import Menu from "./Menu";
+import HeaderTrashTodo from "./HeaderTrashTodo";
 
 const LOCAL_STORAGE_TODOS = "todos";
 
@@ -141,7 +142,7 @@ export default function ToDoApp() {
           />
         </div>
 
-        {todos.every((todo) => todo.complete !== false) && (
+        {todos.every((todo) => (todo.complete !== false) || (todo.isTrash === true)) && (
           <p className="h5 text-center">No tasks yet</p>
         )}
         <ToDoList
@@ -177,6 +178,7 @@ export default function ToDoApp() {
         transition={{ duration: 0.4, delay: 0.1 }}
         className={toggle === 3 ? "show-content" : "content"}
       >
+        <HeaderTrashTodo todos={todos}/>
         <ToDoList
           todos={todos.filter((todo) => {
             return todo.isTrash === true;

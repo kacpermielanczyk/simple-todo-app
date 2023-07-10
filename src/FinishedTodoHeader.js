@@ -6,7 +6,7 @@ export default function FinishedTodoHeader({ todos }) {
       <h2 className="text-center mb-2 display-4">
         Finished todo
       </h2>
-      {todos.every((todo) => todo.complete !== true) ? (
+      {todos.every((todo) => ((todo.complete !== true) || (todo.isTrash === true))) ? (
         <p className="h5 text-center">tasks have not been completed yet</p>
       ) : null}
     </>
